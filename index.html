@@ -18,15 +18,24 @@
 	<br>
 	<br>
 	<br>
-	<button>New User</button>
+	<button id="newuser" onclick="regpage()">New User</button>
 	<br>
 	<br>
-	<button>Sign-IN</button>
+	<button id="sign" onclick="signpage()">Sign In</button>
 
 
 
  <script src="https://code.jquery.com/jquery.js"></script>
   <script type="text/javascript">
+
+  	function regpage() {
+window.location = 'index2.html'
+}
+
+
+  	function signpage() {
+window.location = 'index3.html'
+}
 
 console.log('hello');
 
