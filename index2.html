@@ -13,29 +13,33 @@
 
 <body>
 <header>
-    <h1>Valet Registration Form</h1>
-    <br>
-    <br>
-    <br>
-    <br>
-    <form>
 
- <div class="form-group">
-   <label for="name">Name</label>
-   <input type="text" class="form-control" id="name" placeholder="Name">
- </div>
- <div class="form-group">
-   <label for="email">Email address</label>
-   <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else</small>
- </div>
+
+	<h1>Valet Registration Form</h1>
+	<br>
+	<br>
+	<br>
+	<br>
+	<form>
+  
   <div class="form-group">
-   <label for="carDetails">Car Details</label>
-   <textarea class="form-control" id="carDetails" rows="3"></textarea>
- </div>
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Name">
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else</small>
+  </div>
+   <div class="form-group">
+    <label for="carDetails">Car Details</label>
+    <textarea class="form-control" id="carDetails" rows="3"></textarea>
+  </div>
+  
+  <button id = "submit" type="submit" class="btn btn-primary">Submit</button>
 
- <button id = "submit" type="submit" class="btn btn-primary">Submit</button>
 </form>
+
 
 
 
@@ -76,14 +80,15 @@
 
 
 
-     database.ref().push({
-         name: name,
-         email: email,
-         carDetails: carDetails
 
-     });
+      database.ref().push({
+      	name: name,
+      	email: email,
+      	carDetails: carDetails
+     
+      });
 
- });
+  });
 </script>
  </body>
  </html>
