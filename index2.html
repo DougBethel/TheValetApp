@@ -3,16 +3,17 @@
 
 <head>
 
-  <meta charset="UTF-8">
-  <title>Valet Express</title>
+ <meta charset="UTF-8">
+ <title>Valet Express</title>
 
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+ <!-- Bootstrap -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 </head>
 
 <body>
 <header>
+<<<<<<< HEAD
 	<h1>Valet Registration Form</h1>
 	<br>
 	<br>
@@ -35,10 +36,35 @@
   </div>
   
   <button id = "submit" type="submit" class="btn btn-primary">Submit</button>
+=======
+    <h1>Valet Registration Form</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form>
+
+ <div class="form-group">
+   <label for="name">Name</label>
+   <input type="text" class="form-control" id="name" placeholder="Name">
+ </div>
+ <div class="form-group">
+   <label for="email">Email address</label>
+   <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+   <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else</small>
+ </div>
+  <div class="form-group">
+   <label for="carDetails">Car Details</label>
+   <textarea class="form-control" id="carDetails" rows="3"></textarea>
+ </div>
+
+ <button id = "submit" type="submit" class="btn btn-primary">Submit</button>
+>>>>>>> 92161f2934674aa0d10b8c33b43844f9a659de79
 </form>
 
 
 
+<<<<<<< HEAD
  <script src="https://code.jquery.com/jquery.js"></script>
  <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
 
@@ -83,11 +109,53 @@
 
   });
    
+=======
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+
+
+ <script>
+
+     // Initialize Firebase
+ var config = {
+   apiKey: "AIzaSyD5kQeeGxOy3HuCdTikDrrX0Ai6ECAv53w",
+   authDomain: "valet-app-1515859386411.firebaseapp.com",
+   databaseURL: "https://valet-app-1515859386411.firebaseio.com",
+   projectId: "valet-app-1515859386411",
+   storageBucket: "valet-app-1515859386411.appspot.com",
+   messagingSenderId: "514740905679"
+ };
+
+ firebase.initializeApp(config);
+
+ var database = firebase.database();
+// On Click
+    var name = "";
+    var email = "";
+    var carDetails = "";
+
+   $("#submit").on("click", function() {
+       event.preventDefault();
+     var name = $("#name").val().trim();
+     var email = $("#email").val().trim();
+     var carDetails = $("#carDetails").val().trim();
+     console.log(name);
+     console.log(email);
+     console.log(carDetails);
+
+>>>>>>> 92161f2934674aa0d10b8c33b43844f9a659de79
 
 
 
+     database.ref().push({
+         name: name,
+         email: email,
+         carDetails: carDetails
 
+     });
 
-  </script>
-</body>
-</html>
+ });
+</script>
+ </body>
+ </html>

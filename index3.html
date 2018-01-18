@@ -25,14 +25,23 @@
     <label for="emailInput">Email address</label>
     <input type="email" class="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Enter email">
     <br>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" onclick="mappage()">Submit</button>
   </div>
+   
    
 
  <script src="https://code.jquery.com/jquery.js"></script>
   <script type="text/javascript">
 
-console.log('hello3');
+
+
+
+    function mappage() {
+      event.preventDefault();
+window.location = 'index4.html'
+console.log('hello');
+}
+
 
 
 
