@@ -36,7 +36,8 @@
     <textarea class="form-control" id="carDetails" rows="3"></textarea>
   </div>
   
-  <button id = "submit" type="submit" class="btn btn-primary">Submit</button>
+  <button id = "submit" type="submit" class="btn btn-primary" onclick="regpage()">Submit</button>
+
 
 </form>
 
@@ -63,11 +64,16 @@
  firebase.initializeApp(config);
 
  var database = firebase.database();
+
+ function regpage() {
+window.location = 'index.html'
+}
 // On Click
     var name = "";
     var email = "";
     var carDetails = "";
-
+  
+ 
    $("#submit").on("click", function() {
        event.preventDefault();
      var name = $("#name").val().trim();
@@ -85,6 +91,8 @@
       	name: name,
       	email: email,
       	carDetails: carDetails
+        
+
      
       });
 
