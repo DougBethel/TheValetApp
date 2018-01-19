@@ -9,17 +9,41 @@
   <!-- Bootstrap -->
   <link href="https://fonts.googleapis.com/css?family=Anton|Kavivanar|Roboto|Roboto+Condensed" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">  
 
 </head>
 
 <body>
 <header>
+   
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Invalid Email</h4>
+        </div>
+        <div class="modal-body">
+          <p>Please Register Your Email</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
 	<h1>Valet Email Submit</h1>
 	<br>
 	<br>
 	<br>
 	<br>
+
 	<form>
 
 
@@ -28,23 +52,103 @@
     <input type="email" class="form-control fontColors" id="emailInput" aria-describedby="emailHelp" placeholder="Enter email">
     <br>
 
-    <button type="submit" onclick="mappage()">Submit</button>
+    <a id="submit" class="btn btn-primary btn-lg" type="submit" >Submit</a>
+    <a class="btn btn-primary btn-lg" "fonts" href="#" role="button" id="sign" onclick="regpage()">Home</a>
+   
   </div>
-   
-   
 
+
+ </form>
+
+ 
 
  <script src="https://code.jquery.com/jquery.js"></script>
-  <script type="text/javascript">
+ <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script>
 
 
-
-
-    function mappage() {
-      event.preventDefault();
-window.location = 'index4.html'
-console.log('hello');
+ function regpage() {
+window.location = 'index2.html'
 }
+
+     // Initialize Firebase
+ var config = {
+   apiKey: "AIzaSyCj_ZX9ZrNmlfO_Nu6sP855CLzJ-q4fT54",
+    authDomain: "firemichaux.firebaseapp.com",
+    databaseURL: "https://firemichaux.firebaseio.com",
+    projectId: "firemichaux",
+    storageBucket: "firemichaux.appspot.com",
+    messagingSenderId: "111424484723"
+ };
+
+ firebase.initializeApp(config);
+
+ var database = firebase.database();
+
+database.ref().push({
+       
+
+ });
+
+
+function snapshotToArray(snapshot) {
+    var snapArr = [];
+
+    snapshot.forEach(function(childSnapshot) {
+        var item = childSnapshot.val().email;
+        
+
+        snapArr.push(item);
+
+        
+        
+       $("#submit").on("click", function(event) {
+       event.preventDefault();
+    console.log(snapArr.length)
+     var email = $("#emailInput").val().trim();
+          for (var i=0; i<snapArr.length;i++){
+          if ( email == snapArr[i]){
+            
+            window.location = 'index4.html'
+            i=snapArr.length;
+            
+          }else{
+            
+            $(document).ready(function(){
+            $("#myModal").modal();
+    });
+          }
+      
+}
+ 
+});
+    
+
+        
+    });
+
+    
+
+};
+
+
+    
+ database.ref().on("value", function(snapshot) {
+
+      // Log everything that's coming out of snapshot
+      // console.log(snapshot.val());
+      snapshotToArray(snapshot);
+    
+
+});
+     
+     
+
+
+  
+ 
 
 
 
