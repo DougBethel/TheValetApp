@@ -1,3 +1,19 @@
 body {
-  background-image: url("../media/congruent_pentagon.png");
+  background-image: url("../media/P14.jpg");
+}
+
+.jumbotron {
+  background: rgba(76, 80, 80, 0.5);
+  color: white;
+  border: solid 4px black;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+}
+
+h1 {
+  color: white;
+}
+
+.fontColors {
+  color: white;
 }
