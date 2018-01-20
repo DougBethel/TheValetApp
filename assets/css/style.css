@@ -22,4 +22,7 @@ h1 {
   color: white;
 }
 
- 
+.customContainer {
+  margin: 7% auto;
+  width: 50%;
+}

@@ -16,35 +16,32 @@
 <body>
 <header>
 
-
-
+<div class="customContainer">
 	<h1>Valet Registration Form</h1>
-	<br>
-	<br>
-	<br>
-	<br>
+
 	<form>
-  
+
   <div class="form-group">
-    <label for="name">Name</label>
+    <label for="name" class="fontColors">Name</label>
     <input type="text" class="form-control" id="name" placeholder="Name">
   </div>
   <div class="form-group">
-    <label for="email">Email address</label>
+    <label for="email" class="fontColors">Email address</label>
     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else</small>
+    <small id="emailHelp" class="form-text text-muted fontColors">We'll never share your email with anyone else</small>
   </div>
    <div class="form-group">
-    <label for="carDetails">Car Details</label>
+    <label for="carDetails" class="fontColors">Car Details</label>
     <textarea class="form-control" id="carDetails" rows="3"></textarea>
   </div>
-  
+
   <button id = "submit" type="submit" class="btn btn-primary" onclick="regpage()">Submit</button>
 
 
 
 </form>
 
+</div>
 
 
 
@@ -78,29 +75,29 @@ function snapshotToArray(snapshot) {
 
     snapshot.forEach(function(childSnapshot) {
         var item = childSnapshot.val().email;
-        
+
 
         snapArr.push(item);
 
         for (var i=0;i < snapArr.length;i++){
-         
+
           console.log(snapArr);
         }
-        
-        
 
-        
+
+
+
     });
 
-    
+
 
 };
 // On Click
     var name = "";
     var email = "";
     var carDetails = "";
-  
- 
+
+
    $("#submit").on("click", function(event) {
        event.preventDefault();
      var name = $("#name").val().trim();
@@ -114,8 +111,8 @@ function snapshotToArray(snapshot) {
       	name: name,
       	email: email,
       	carDetails: carDetails
-        
-       
+
+
       });
 
 
@@ -124,7 +121,7 @@ function snapshotToArray(snapshot) {
    database.ref().on("value", function(snapshot) {
 
       // Log everything that's coming out of snapshot
-     
+
       var test = snapshot.val().name;
       console.log(test);
       console.log(snapshot.val());
@@ -132,8 +129,8 @@ function snapshotToArray(snapshot) {
 
 
 });
-  
- 
+
+
 
 </script>
  </body>
