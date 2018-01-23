@@ -145,6 +145,10 @@
         </table>
       </div>
     </div>
+<div id="show"></div>
+
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script>
       // This example uses the autocomplete feature of the Google Places API.
@@ -247,7 +251,33 @@
             }
           }
         });
+
+        var city = $("#city").val();
+
+       if(city !='') {
+
+         $.ajax({
+           url:'http://api.openweathermap.org/data/2.5/weather?q=' + $("#autocomplete").val() + "&units=metric" +"&APPID=8d9b11c8efa04dcc33e125e5313e8650",
+           type: "GET",
+           dataType: "jsonp",
+           success: function(data){
+             console.log(data);
+         var widget = show(data);
+
+            $("#show").html(widget);
+
+            $("#city").val('');
+           }
+
+         });
+
+       } else{
+
+         $("#error").html('Field cannot be empty');
+       }
       }
+
+
 
       function clearMarkers() {
         for (var i = 0; i < markers.length; i++) {
@@ -375,7 +405,23 @@
         } else {
           document.getElementById('iw-website-row').style.display = 'none';
         }
+
       }
+
+      function show(data){
+        return "<h3 style='font-size:48px; font-weight: bold;' class='text-center'> " + data.name + "</h3>" +
+       "<h3 style='padding-left:40px;'><strong>Weather</strong>: "+ data.weather[0].main +"</h3>" +
+    "<h3 style='padding-left:40px;'><strong>Description</strong>: <img src='http://openweathermap.org/img/w/" +data.weather[0].icon+".png'> "+ data.weather[0].description +
+    "</h3>" +
+    "<h3 style='padding-left:40px;'><strong>Temperature</strong>: "+ data.main.temp +"&deg;</h3>" +
+    "<h3 style='padding-left:40px;'><strong>Pressure</strong>: "+ data.main.pressure +"</h3>" +
+    "<h3 style='padding-left:40px;'><strong>Humidity</strong>: "+ data.main.humidity +"</h3>" +
+    "<h3 style='padding-left:40px;'><strong>Min. Temperature</strong>: " + data.main.temp_min +"</h3>" +
+    "<h3 style='padding-left:40px;'><strong>Max. Temperature</strong>: " + data.main.temp_max + "</h3>" +
+    "<h3 style='padding-left:40px;'><strong>Wind Speed</strong>: " + data.wind.speed + " m/s</h3>"
+
+    }
+
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap&key=AIzaSyCrG1X8yG4fitECwOHjTbtb2k1ExmEOYKc"
         async defer></script>
