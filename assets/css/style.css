@@ -1,5 +1,9 @@
 body {
   background-image: url("../media/P14.jpg");
+  webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .jumbotron {
@@ -25,4 +29,12 @@ h1 {
 .customContainer {
   margin: 7% auto;
   width: 50%;
+}
+
+#show {
+  background: white;
+  width: 350px;
+  float: right;
+  margin-right: 100px;
+  margin-top: 25px;
 }

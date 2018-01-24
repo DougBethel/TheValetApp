@@ -4,99 +4,107 @@
     <title>Place Autocomplete Valet Search</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      table {
-        font-size: 12px;
-      }
-      #map {
-        width: 440px;
-      }
-      #listing {
-        position: absolute;
-        width: 200px;
-        height: 470px;
-        overflow: auto;
-        left: 442px;
-        top: 0px;
-        cursor: pointer;
-        overflow-x: hidden;
-      }
-      #findvalets {
-        position: absolute;
-        text-align: right;
-        width: 100px;
-        font-size: 14px;
-        padding: 4px;
-        z-index: 5;
-        background-color: #fff;
-      }
-      #locationField {
-        position: absolute;
-        width: 190px;
-        height: 25px;
-        left: 108px;
-        top: 0px;
-        z-index: 5;
-        background-color: #fff;
-      }
-      #controls {
-        position: absolute;
-        left: 300px;
-        width: 140px;
-        top: 0px;
-        z-index: 5;
-        background-color: #fff;
-      }
-      #autocomplete {
-        width: 100%;
-      }
-      #country {
-        width: 100%;
-      }
-      .placeIcon {
-        width: 20px;
-        height: 34px;
-        margin: 4px;
-      }
-      .valetIcon {
-        width: 24px;
-        height: 24px;
-      }
-      #resultsTable {
-        border-collapse: collapse;
-        width: 240px;
-      }
-      #rating {
-        font-size: 13px;
-        font-family: Arial Unicode MS;
-      }
-      .iw_table_row {
-        height: 18px;
-      }
-      .iw_attribute_name {
-        font-weight: bold;
-        text-align: right;
-      }
-      .iw_table_icon {
-        text-align: right;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css?family=Anton|Kavivanar|Roboto|Roboto+Condensed" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
   </head>
+  <style>
+  /* Always set the map height explicitly to define the size of the div
+   * element that contains the map. */
+   #map {
+    height: 70%;
+  }
+  /* Optional: Makes the sample page fill the window. */
+  html,body{
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
 
+  table {
+    font-size: 12px;
+  }
+  #map {
+    float: left;
+    width: 600px;
+    margin: 25px;
+  }
+
+  #listing {
+    float: left;
+    position: absolute;
+    width: 200px;
+    height: 480px;
+    overflow: auto;
+    left: 650px;
+    top: 45px;
+    cursor: pointer;
+    overflow-x: hidden;
+  }
+  #findvalets {
+    position: absolute;
+    text-align: right;
+    width: 100px;
+    font-size: 14px;
+    padding: 4px;
+    z-index: 5;
+    background-color: #fff;
+  }
+  #locationField {
+    position: absolute;
+    width: 190px;
+    height: 25px;
+    left: 108px;
+    top: 0px;
+    z-index: 5;
+    background-color: #fff;
+  }
+  #controls {
+    position: absolute;
+    left: 300px;
+    width: 140px;
+    top: 0px;
+    z-index: 5;
+    background-color: #fff;
+  }
+  #autocomplete {
+    width: 100%;
+  }
+  #country {
+    width: 100%;
+  }
+  .placeIcon {
+    width: 20px;
+    height: 34px;
+    margin: 4px;
+  }
+  .valetIcon {
+    width: 24px;
+    height: 24px;
+  }
+  #resultsTable {
+    border-collapse: collapse;
+    width: 240px;
+  }
+  #rating {
+    font-size: 13px;
+    font-family: Arial Unicode MS;
+  }
+  .iw_table_row {
+    height: 18px;
+  }
+  .iw_attribute_name {
+    font-weight: bold;
+    text-align: right;
+  }
+  .iw_table_icon {
+    text-align: right;
+  }
+</style>
   <body>
 
-    <div id="findvalet">
+
+    <div id="findvalet" class="fontColors">
       Find valet in:
     </div>
 
@@ -111,13 +119,16 @@
       </select>
     </div>
 
+
     <div id="map"></div>
+
 
     <div id="listing">
       <table id="resultsTable">
         <tbody id="results"></tbody>
       </table>
     </div>
+
 
     <div style="display: none">
       <div id="info-content">
@@ -145,7 +156,9 @@
         </table>
       </div>
     </div>
+
 <div id="show"></div>
+
 
 <script
   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -155,27 +168,21 @@
       // It allows the user to find all hotels in a given place, within a given
       // country. It then displays markers for all the hotels returned,
       // with on-click details for each hotel.
-
       // This example requires the Places library. Include the libraries=places
       // parameter when you first load the API. For example:
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
       var map, places, infoWindow;
       var markers = [];
       var autocomplete;
       var countryRestrict = {'country': 'us'};
       var MARKER_PATH = 'https://developers.google.com/maps/documentation/javascript/images/marker_green';
       var hostnameRegexp = new RegExp('^https?://.+?/');
-
       var countries = {
-
         'us': {
           center: {lat:38.9072, lng:-77.0369},
           zoom: 11
         },
-
       };
-
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: countries['us'].zoom,
@@ -185,11 +192,9 @@
           zoomControl: false,
           streetViewControl: false
         });
-
         infoWindow = new google.maps.InfoWindow({
           content: document.getElementById('info-content')
         });
-
         // Create the autocomplete object and associate it with the UI input control.
         // Restrict the search to the default country, and to place type "cities".
         autocomplete = new google.maps.places.Autocomplete(
@@ -199,14 +204,11 @@
               componentRestrictions: countryRestrict
             });
         places = new google.maps.places.PlacesService(map);
-
         autocomplete.addListener('place_changed', onPlaceChanged);
-
         // Add a DOM event listener to react when the user selects a country.
         document.getElementById('country').addEventListener(
             'change', setAutocompleteCountry);
       }
-
       // When the user selects a city, get the place details for the city and
       // zoom the map in on the city.
       function onPlaceChanged() {
@@ -219,14 +221,12 @@
           document.getElementById('autocomplete').placeholder = 'Enter a city';
         }
       }
-
       // Search for hotels in the selected city, within the viewport of the map.
       function search() {
         var search = {
           bounds: map.getBounds(),
           types: ['parking']
         };
-
         places.nearbySearch(search, function(results, status) {
           if (status === google.maps.places.PlacesServiceStatus.OK) {
             clearResults();
@@ -251,11 +251,8 @@
             }
           }
         });
-
         var city = $("#city").val();
-
        if(city !='') {
-
          $.ajax({
            url:'http://api.openweathermap.org/data/2.5/weather?q=' + $("#autocomplete").val() + "&units=metric" +"&APPID=8d9b11c8efa04dcc33e125e5313e8650",
            type: "GET",
@@ -263,22 +260,14 @@
            success: function(data){
              console.log(data);
          var widget = show(data);
-
             $("#show").html(widget);
-
             $("#city").val('');
            }
-
          });
-
        } else{
-
          $("#error").html('Field cannot be empty');
        }
       }
-
-
-
       function clearMarkers() {
         for (var i = 0; i < markers.length; i++) {
           if (markers[i]) {
@@ -287,7 +276,6 @@
         }
         markers = [];
       }
-
       // Set the country restriction based on user input.
       // Also center and zoom the map on the given country.
       function setAutocompleteCountry() {
@@ -304,24 +292,20 @@
         clearResults();
         clearMarkers();
       }
-
       function dropMarker(i) {
         return function() {
           markers[i].setMap(map);
         };
       }
-
       function addResult(result, i) {
         var results = document.getElementById('results');
         var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
         var markerIcon = MARKER_PATH + markerLetter + '.png';
-
         var tr = document.createElement('tr');
         tr.style.backgroundColor = (i % 2 === 0 ? '#F0F0F0' : '#FFFFFF');
         tr.onclick = function() {
           google.maps.event.trigger(markers[i], 'click');
         };
-
         var iconTd = document.createElement('td');
         var nameTd = document.createElement('td');
         var icon = document.createElement('img');
@@ -335,14 +319,12 @@
         tr.appendChild(nameTd);
         results.appendChild(tr);
       }
-
       function clearResults() {
         var results = document.getElementById('results');
         while (results.childNodes[0]) {
           results.removeChild(results.childNodes[0]);
         }
       }
-
       // Get the place details for a hotel. Show the information in an info window,
       // anchored on the marker for the hotel that the user selected.
       function showInfoWindow() {
@@ -356,7 +338,6 @@
               buildIWContent(place);
             });
       }
-
       // Load the place information into the HTML elements used by the info window.
       function buildIWContent(place) {
         document.getElementById('iw-icon').innerHTML = '<img class="valetIcon" ' +
@@ -364,7 +345,6 @@
         document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
             '">' + place.name + '</a></b>';
         document.getElementById('iw-address').textContent = place.vicinity;
-
         if (place.formatted_phone_number) {
           document.getElementById('iw-phone-row').style.display = '';
           document.getElementById('iw-phone').textContent =
@@ -372,7 +352,6 @@
         } else {
           document.getElementById('iw-phone-row').style.display = 'none';
         }
-
         // Assign a five-star rating to the hotel, using a black star ('&#10029;')
         // to indicate the rating the hotel has earned, and a white star ('&#10025;')
         // for the rating points not achieved.
@@ -390,7 +369,6 @@
         } else {
           document.getElementById('iw-rating-row').style.display = 'none';
         }
-
         // The regexp isolates the first part of the URL (domain plus subdomain)
         // to give a short URL for displaying in the info window.
         if (place.website) {
@@ -405,9 +383,7 @@
         } else {
           document.getElementById('iw-website-row').style.display = 'none';
         }
-
       }
-
       function show(data){
         return "<h3 style='font-size:48px; font-weight: bold;' class='text-center'> " + data.name + "</h3>" +
        "<h3 style='padding-left:40px;'><strong>Weather</strong>: "+ data.weather[0].main +"</h3>" +
@@ -419,9 +395,7 @@
     "<h3 style='padding-left:40px;'><strong>Min. Temperature</strong>: " + data.main.temp_min +"</h3>" +
     "<h3 style='padding-left:40px;'><strong>Max. Temperature</strong>: " + data.main.temp_max + "</h3>" +
     "<h3 style='padding-left:40px;'><strong>Wind Speed</strong>: " + data.wind.speed + " m/s</h3>"
-
     }
-
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap&key=AIzaSyCrG1X8yG4fitECwOHjTbtb2k1ExmEOYKc"
         async defer></script>
