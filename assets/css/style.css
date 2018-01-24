@@ -1,6 +1,12 @@
 body {
-  background-image: url("../media/P14.jpg");
-}
+   background: url("../media/P14.jpg") no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   z-index: -1;
+   background-repeat: no-repeat;
+ }
 
 .jumbotron {
   background: rgba(76, 80, 80, 0.5);
@@ -26,3 +32,16 @@ h1 {
   margin: 7% auto;
   width: 50%;
 }
+
+#show {
+  background: black;
+  color: white;
+  width: 350px;
+  float: right;
+  margin-right: 200px;
+  margin-top: 20px;
+ }
+
+ .request {
+   clear: both;
+ }
