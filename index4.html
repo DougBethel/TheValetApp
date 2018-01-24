@@ -4,6 +4,8 @@
     <title>Place Autocomplete Valet Search</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -91,6 +93,12 @@
       .iw_table_icon {
         text-align: right;
       }
+      .request{
+        position: relative;
+        float: right;
+        margin-top: 300px;
+      }
+
     </style>
   </head>
 
@@ -110,8 +118,22 @@
 
       </select>
     </div>
+    <div class="request">
 
+
+      <button onclick="myFunction()" type="button" class="btn btn-primary btn-lg btn-block">Request Vehicle</button>
+
+    </div>
     <div id="map"></div>
+
+
+
+
+
+
+
+
+
 
     <div id="listing">
       <table id="resultsTable">
@@ -151,6 +173,12 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script>
+    function myFunction() {
+      window.location = "index5.html"
+      // document.getElementById("ready").innerHTML = "Your Vehicle is Ready!";
+
+    }
+
       // This example uses the autocomplete feature of the Google Places API.
       // It allows the user to find all hotels in a given place, within a given
       // country. It then displays markers for all the hotels returned,
@@ -257,7 +285,7 @@
        if(city !='') {
 
          $.ajax({
-           url:'http://api.openweathermap.org/data/2.5/weather?q=' + $("#autocomplete").val() + "&units=metric" +"&APPID=8d9b11c8efa04dcc33e125e5313e8650",
+           url:'http://api.openweathermap.org/data/2.5/weather?q=' + $("#autocomplete").val() + "&units=imperial" +"&APPID=8d9b11c8efa04dcc33e125e5313e8650",
            type: "GET",
            dataType: "jsonp",
            success: function(data){
