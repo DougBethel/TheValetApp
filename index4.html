@@ -79,7 +79,7 @@
 
     <script>
     function myFunction() {
-      window.location = "index5.html"
+      window.location = "https://web-push-codelab.glitch.me/"
       // document.getElementById("ready").innerHTML = "Your Vehicle is Ready!";
 
     }
@@ -190,7 +190,7 @@
        if(city !='') {
 
          $.ajax({
-           url:'http://api.openweathermap.org/data/2.5/weather?q=' + $("#autocomplete").val() + "&units=imperial" +"&APPID=8d9b11c8efa04dcc33e125e5313e8650",
+           url:'https://api.openweathermap.org/data/2.5/weather?q=' + $("#autocomplete").val() + "&units=imperial" +"&APPID=8d9b11c8efa04dcc33e125e5313e8650",
            type: "GET",
            dataType: "jsonp",
            success: function(data){
