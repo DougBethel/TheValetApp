@@ -36,12 +36,14 @@ h1 {
 #show {
   background: black;
   color: white;
-  width: 350px;
+  width: 25%;
   float: right;
-  margin-right: 200px;
-  margin-top: 20px;
+  margin-right: 10%;
+  margin-top: 10px;
  }
 
  .request {
    clear: both;
+   width: 200px;
+
  }
